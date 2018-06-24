@@ -1,4 +1,5 @@
 #ifndef WIN
+#ifndef WIIU
 /*=========================================================================*\
 * Unix domain socket 
 * LuaSocket toolkit
@@ -11,7 +12,7 @@
 #include "socket.h"
 #include "options.h"
 #include "unix.h"
-#include <sys/un.h> 
+//#include <sys/un.h> 
 
 /*=========================================================================*\
 * Internal function prototypes
@@ -354,4 +355,5 @@ static int global_create(lua_State *L) {
         return 2;
     }
 }
+#endif
 #endif

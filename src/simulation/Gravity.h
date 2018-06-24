@@ -4,7 +4,9 @@
 #include "common/tpt-thread.h"
 #include "Config.h"
 #include "Simulation.h"
-
+#ifdef WIIU
+#include <wiiu_pthread.h>
+#endif
 #ifdef GRAVFFT
 #include <fftw3.h>
 #endif

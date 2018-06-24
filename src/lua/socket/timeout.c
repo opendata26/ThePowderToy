@@ -130,10 +130,10 @@ double timeout_gettime(void) {
 }
 #else
 double timeout_gettime(void) {
-    struct timeval v;
-    gettimeofday(&v, (struct timezone *) NULL);
+    //struct timeval v;
+    //gettimeofday(&v, (struct timezone *) NULL);
     /* Unix Epoch time (time since January 1, 1970 (UTC)) */
-    return v.tv_sec + v.tv_usec/1.0e6;
+    return 0;
 }
 #endif
 
@@ -191,6 +191,8 @@ int timeout_lua_sleep(lua_State *L)
     double n = luaL_checknumber(L, 1);
 #ifdef _WIN32
     Sleep((int)(n*1000));
+#elif defined(WIIU)
+    usleep((int)(n*1000));
 #else
     struct timespec t, r;
     t.tv_sec = (int) n;

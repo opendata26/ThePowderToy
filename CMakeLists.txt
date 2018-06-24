@@ -103,5 +103,5 @@ add_subdirectory(externals)
 add_library(data INTERFACE)
 target_include_directories(data INTERFACE ./data)
 
-include_directories(src)
+include_directories(src wiiu-deps /home/opendata/Development/libretro-super/retroarch/wiiu/include ~/Development/libretro-super/retroarch/libretro-common/include)
 add_subdirectory(src)

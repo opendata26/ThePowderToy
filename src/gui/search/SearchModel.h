@@ -8,7 +8,9 @@
 #include <cmath>
 #include "client/SaveInfo.h"
 #include "SearchView.h"
-
+#ifdef WIIU
+#include <wiiu_pthread.h>
+#endif
 using namespace std;
 
 class SearchView;

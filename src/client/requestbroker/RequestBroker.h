@@ -6,6 +6,10 @@
 #include <string>
 #include "common/tpt-thread.h"
 
+#ifdef WIIU
+#include <wiiu_pthread.h>
+#endif
+
 #include "Config.h"
 #include "common/Singleton.h"
 

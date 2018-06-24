@@ -324,19 +324,27 @@ void socket_setnonblocking(p_socket ps) {
 * DNS helpers 
 \*-------------------------------------------------------------------------*/
 int socket_gethostbyaddr(const char *addr, socklen_t len, struct hostent **hp) {
+#ifndef WIIU
     *hp = gethostbyaddr(addr, len, AF_INET);
     if (*hp) return IO_DONE;
     else if (h_errno) return h_errno;
     else if (errno) return errno;
     else return IO_UNKNOWN;
+#else
+    return ENOTSUP;
+#endif
 }
 
 int socket_gethostbyname(const char *addr, struct hostent **hp) {
+#ifndef WIIU
     *hp = gethostbyname(addr);
     if (*hp) return IO_DONE;
     else if (h_errno) return h_errno;
     else if (errno) return errno;
     else return IO_UNKNOWN;
+#else
+    return ENOTSUP;
+#endif
 }
 
 /*-------------------------------------------------------------------------*\
@@ -346,8 +354,11 @@ int socket_gethostbyname(const char *addr, struct hostent **hp) {
 const char *socket_hoststrerror(int err) {
     if (err <= 0) return io_strerror(err);
     switch (err) {
-        case HOST_NOT_FOUND: return "host not found";
+#ifndef WIIU
         default: return hstrerror(err);
+#else
+        default: return "unknown error";
+#endif
     }
 }
 

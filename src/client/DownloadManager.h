@@ -5,6 +5,10 @@
 #include <vector>
 #include "common/Singleton.h"
 
+#ifdef WIIU
+#include <wiiu_pthread.h>
+#endif
+
 class Download;
 class DownloadManager : public Singleton<DownloadManager>
 {

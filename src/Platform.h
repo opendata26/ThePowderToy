@@ -3,6 +3,9 @@
 
 #include <string>
 
+#if defined(WIIU)
+#include <wiiu_pthread.h>
+#endif
 namespace Platform
 {
 	char * ExecutableName();

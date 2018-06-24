@@ -99,6 +99,7 @@ static int inet_global_toip(lua_State *L)
 \*-------------------------------------------------------------------------*/
 static int inet_global_gethostname(lua_State *L)
 {
+#ifndef WIIU
     char name[257];
     name[256] = '\0';
     if (gethostname(name, 256) < 0) {
@@ -109,6 +110,9 @@ static int inet_global_gethostname(lua_State *L)
         lua_pushstring(L, name);
         return 1;
     }
+#else
+    return 2;
+#endif
 }
 
 

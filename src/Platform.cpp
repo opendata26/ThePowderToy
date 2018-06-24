@@ -91,6 +91,8 @@ void Millisleep(long int t)
 {
 #ifdef WIN
 	Sleep(t);
+#elif defined (WIIU)
+	usleep(t * 1000);
 #else
 	struct timespec s;
 	s.tv_sec = t / 1000;
@@ -107,6 +109,10 @@ long unsigned int GetTime()
 	struct timeval s;
 	gettimeofday(&s, NULL);
 	return (unsigned int)(s.tv_sec * 1000 + s.tv_usec / 1000);
+#elif defined(WIIU)
+	struct timespec s;
+	clock_gettime(CLOCK_REALTIME, &s);
+	return s.tv_sec * 1000 + s.tv_nsec / 1000000;
 #else
 	struct timespec s;
 	clock_gettime(CLOCK_MONOTONIC, &s);

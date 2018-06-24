@@ -5,6 +5,9 @@
 #include "common/tpt-thread.h"
 #include "TaskListener.h"
 #include "Config.h"
+#ifdef WIIU
+#include <wiiu_pthread.h>
+#endif
 
 class TaskListener;
 class Task {
